@@ -57,7 +57,7 @@ const Login = () => {
         </div>
 
         {/* Bottom-left hero text */}
-        <div className="absolute left-14 bottom-32 max-w-xl hidden md:block">
+        <div className="absolute left-74 bottom-75 max-w-xl hidden md:block">
           <p className="m-0 mb-1.5 text-white text-[15px] font-bold tracking-[6px]">
             ADMIN CRM
           </p>
@@ -72,8 +72,8 @@ const Login = () => {
         </div>
 
         {/* Login card */}
-        <div className="absolute top-1/2 right-4 md:right-24 -translate-y-1/2 md:translate-x-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 w-[420px] max-w-[90vw] px-9 pt-10 pb-8 bg-[#0c1018]/82 border border-orange-400/35 rounded-[18px] shadow-[0_0_60px_rgba(255,140,30,0.18),0_20px_60px_rgba(0,0,0,0.55)] backdrop-blur-md text-center">
-          <div className="w-[84px] h-[84px] mx-auto mb-3.5 flex items-center justify-center">
+        <div className="absolute top-1/2 right-4 md:right-24 -translate-y-1/2 md:translate-x-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 w-[520px] max-w-[90vw] px-9 pt-10 pb-8 bg-[#0c1018]/82 border border-orange-400/35 rounded-[18px] shadow-[0_0_60px_rgba(255,140,30,0.18),0_20px_60px_rgba(0,0,0,0.55)] backdrop-blur-md text-center">
+          <div className="w-[134px] h-[84px] mx-auto mb-3.5 flex items-center justify-center">
             {/*
               Place your official logo file inside the "public" folder of this
               project (e.g. public/logo.png) and it will show up here automatically.
