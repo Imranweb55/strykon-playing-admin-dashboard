@@ -8,9 +8,14 @@ import {
   Building2,
   BarChart3,
   Settings,
+  Waves,
   X,
 } from "lucide-react";
 import { sidebarLinks } from "./sidebarLinks";
+
+// Background image path - place your image at:
+// public/assets/sidebar/sidebar-bg.jpg
+const SIDEBAR_BG_PATH = "/assets/sidebar/sidebar-bg.jpg";
 
 // Maps the icon name stored in sidebarLinks.js to the actual lucide-react component
 const iconMap = {
@@ -22,6 +27,7 @@ const iconMap = {
   Building2,
   BarChart3,
   Settings,
+  Waves,
 };
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -37,9 +43,10 @@ const Sidebar = ({ isOpen, onClose }) => {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex h-dvh w-72 flex-col border-r border-gray-100 bg-white transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 flex h-dvh w-72 flex-col border-r border-gray-100 bg-cover bg-center transition-transform duration-300 ease-in-out
         lg:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+        style={{ backgroundImage: `url(${SIDEBAR_BG_PATH})` }}
       >
         {/* Logo */}
         <div className="flex items-center justify-between gap-3 px-6 py-6">

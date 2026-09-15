@@ -2,7 +2,7 @@ import { useAuth } from "../../context/AuthContext";
 
 // Background image path - place your generated image at:
 // public/assets/dashboard/dashboard.jpg
-const HERO_BG_PATH = "/assets/dashboard/dashboard-bg.jpg";
+const HERO_BG_PATH = "/assets/dashboard/dashboard.jpg";
 
 const HeroBanner = () => {
   const { admin } = useAuth();

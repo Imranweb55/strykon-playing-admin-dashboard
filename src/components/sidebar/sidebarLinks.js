@@ -36,6 +36,12 @@ export const sidebarLinks = [
     icon: "Building2",
   },
   {
+    id: "swimming-pool",
+    label: "Swimming Pool",
+    path: "/dashboard/swimming-pool",
+    icon: "Waves",
+  },
+  {
     id: "reports",
     label: "Reports",
     path: "/dashboard/reports",

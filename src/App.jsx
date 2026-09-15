@@ -4,6 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Facilities from "./pages/Facilities/Facilities";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             }
           >
             <Route index element={<Dashboard />} />
+            <Route path="swimming-pool" element={<Facilities />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />
