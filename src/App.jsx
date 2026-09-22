@@ -5,6 +5,9 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Facilities from "./pages/Facilities/Facilities";
+import Basketball from "./pages/Basketball/Basketball";
+import Pickleball from "./pages/Pickleball/Pickleball";
+import Cricket from "./pages/Cricket/Cricket";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="swimming-pool" element={<Facilities />} />
+            <Route path="basketball" element={<Basketball />} />
+            <Route path="pickleball" element={<Pickleball />} />
+            <Route path="cricket" element={<Cricket />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />

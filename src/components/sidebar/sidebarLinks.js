@@ -6,8 +6,8 @@ export const sidebarLinks = [
     icon: "LayoutDashboard",
   },
   {
-    id: "members",
-    label: "Members",
+    id: "Members",
+    label: "Membership",
     path: "/dashboard/members",
     icon: "Users",
   },
@@ -41,6 +41,19 @@ export const sidebarLinks = [
     path: "/dashboard/swimming-pool",
     icon: "Waves",
   },
+  {
+    id: "basketball",
+    label: "Basketball",
+    path: "/dashboard/basketball",
+    icon: "Dribbble",
+  },
+  {
+    id: "pickleball",
+    label: "Pickleball",
+    path: "/dashboard/pickleball",
+    icon: "CircleDot",
+  },
+  { id: "cricket", label: "Cricket", path: "/dashboard/cricket", icon: "Zap" },
   {
     id: "reports",
     label: "Reports",

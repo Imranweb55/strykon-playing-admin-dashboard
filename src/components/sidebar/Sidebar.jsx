@@ -9,6 +9,9 @@ import {
   BarChart3,
   Settings,
   Waves,
+  Dribbble,
+  CircleDot,
+  Zap,
   X,
 } from "lucide-react";
 import { sidebarLinks } from "./sidebarLinks";
@@ -28,6 +31,9 @@ const iconMap = {
   BarChart3,
   Settings,
   Waves,
+  Dribbble,
+  CircleDot,
+  Zap,
 };
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -87,10 +93,10 @@ const Sidebar = ({ isOpen, onClose }) => {
                     end={link.path === "/dashboard"}
                     onClick={onClose}
                     className={({ isActive }) =>
-                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium backdrop-blur-sm transition-colors ${
                         isActive
-                          ? "bg-amber-50 text-slate-800"
-                          : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"
+                          ? "bg-amber-100/90 text-slate-800"
+                          : "text-slate-500 hover:bg-white/50 hover:text-slate-700"
                       }`
                     }
                   >
