@@ -1,7 +1,6 @@
 import { Waves, Users, IndianRupee } from "lucide-react";
-import { poolSummary } from "../../data/facilitiesData";
 
-const FacilitySummaryCard = () => {
+const FacilitySummaryCard = ({ totalBookings = 0, totalRevenue = 0 }) => {
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
       <div className="flex items-center gap-2">
@@ -19,7 +18,7 @@ const FacilitySummaryCard = () => {
           <div>
             <p className="text-xs text-slate-400">Total Bookings</p>
             <p className="text-base font-extrabold text-slate-800">
-              {poolSummary.totalBookings}
+              {totalBookings}
             </p>
           </div>
         </div>
@@ -31,7 +30,7 @@ const FacilitySummaryCard = () => {
           <div>
             <p className="text-xs text-slate-400">Total Revenue</p>
             <p className="text-base font-extrabold text-slate-800">
-              ₹{poolSummary.totalRevenue.toLocaleString("en-IN")}
+              ₹{totalRevenue.toLocaleString("en-IN")}
             </p>
           </div>
         </div>

@@ -3,6 +3,9 @@ import {
   LayoutDashboard,
   Users,
   CalendarCheck2,
+  CalendarDays,
+  Tags,
+  BookOpen,
   Clock3,
   UserSquare2,
   Building2,
@@ -12,19 +15,31 @@ import {
   Dribbble,
   CircleDot,
   Zap,
+  Footprints,
   X,
 } from "lucide-react";
 import { sidebarLinks } from "./sidebarLinks";
 
-// Background image path - place your image at:
-// public/assets/sidebar/sidebar-bg.jpg
-const SIDEBAR_BG_PATH = "/assets/sidebar/sidebar-bg.jpg";
+// Panther artwork (public/assets/sidebar/sidebar-bg.png). It is nearly white,
+// so it is multiplied over a tinted gradient: the colour shows through and
+// the gold panther stays visible at the bottom.
+const SIDEBAR_BG_PATH = "/assets/sidebar/sidebar-bg.png";
+const SIDEBAR_STYLE = {
+  backgroundImage: `url(${SIDEBAR_BG_PATH}), linear-gradient(180deg, #cfe0fb 0%, #bcd2f7 40%, #d6dcf8 72%, #fbe3bd 100%)`,
+  backgroundBlendMode: "multiply",
+  backgroundSize: "cover, cover",
+  backgroundPosition: "center bottom, center",
+  backgroundRepeat: "no-repeat",
+};
 
 // Maps the icon name stored in sidebarLinks.js to the actual lucide-react component
 const iconMap = {
   LayoutDashboard,
   Users,
   CalendarCheck2,
+  CalendarDays,
+  Tags,
+  BookOpen,
   Clock3,
   UserSquare2,
   Building2,
@@ -34,6 +49,7 @@ const iconMap = {
   Dribbble,
   CircleDot,
   Zap,
+  Footprints,
 };
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -49,13 +65,13 @@ const Sidebar = ({ isOpen, onClose }) => {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex h-dvh w-72 flex-col border-r border-gray-100 bg-cover bg-center transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 flex h-dvh w-72 flex-col border-r border-blue-300/60 shadow-[6px_0_28px_rgba(37,99,235,0.14)] transition-transform duration-300 ease-in-out
         lg:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
-        style={{ backgroundImage: `url(${SIDEBAR_BG_PATH})` }}
+        style={SIDEBAR_STYLE}
       >
         {/* Logo */}
-        <div className="flex items-center justify-between gap-3 px-6 py-6">
+        <div className="mx-4 flex items-center justify-between gap-3 border-b border-blue-300/50 px-2 py-6">
           <div className="flex items-center gap-3">
             {/* Place your official logo at public/logo.png - shows up automatically */}
             <img
@@ -64,17 +80,17 @@ const Sidebar = ({ isOpen, onClose }) => {
               className="h-10 w-10 object-contain"
             />
             <div>
-              <p className="text-lg font-extrabold leading-tight tracking-wide text-slate-800">
+              <p className="text-lg font-extrabold leading-tight tracking-wide text-blue-950">
                 STRYKON
               </p>
-              <p className="text-[10px] font-semibold tracking-[2px] text-slate-400">
+              <p className="text-[10px] font-semibold tracking-[2px] text-blue-800/70">
                 SPORTS ACADEMY
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 lg:hidden"
+            className="text-blue-900/60 lg:hidden"
             aria-label="Close menu"
           >
             <X size={22} />
@@ -93,10 +109,10 @@ const Sidebar = ({ isOpen, onClose }) => {
                     end={link.path === "/dashboard"}
                     onClick={onClose}
                     className={({ isActive }) =>
-                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium backdrop-blur-sm transition-colors ${
+                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                         isActive
-                          ? "bg-amber-100/90 text-slate-800"
-                          : "text-slate-500 hover:bg-white/50 hover:text-slate-700"
+                          ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/30"
+                          : "text-blue-950/75 hover:bg-white/60 hover:text-blue-950"
                       }`
                     }
                   >
@@ -105,8 +121,8 @@ const Sidebar = ({ isOpen, onClose }) => {
                         <span
                           className={`flex h-8 w-8 items-center justify-center rounded-lg ${
                             isActive
-                              ? "bg-blue-600 text-white"
-                              : "bg-slate-100 text-slate-500"
+                              ? "bg-white/20 text-white"
+                              : "bg-white/70 text-blue-700 shadow-sm"
                           }`}
                         >
                           <Icon size={17} />
@@ -125,7 +141,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         {/* Bottom decorative tagline */}
         <div className="px-6 pb-8 pt-4">
-          <p className="text-xl font-extrabold leading-snug text-slate-800">
+          <p className="text-xl font-extrabold leading-snug text-blue-950">
             Play
             <br />
             Train

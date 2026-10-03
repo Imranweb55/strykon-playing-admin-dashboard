@@ -1,4 +1,5 @@
 import { Waves, Dribbble, CircleDot, Zap, ChevronDown } from "lucide-react";
+import { sportMeta } from "../../data/dashboardData";
 
 // One icon per sport. Add more here if new sports are introduced later.
 const sportIconMap = {
@@ -8,7 +9,8 @@ const sportIconMap = {
   cricket: Zap,
 };
 
-const SportStatCard = ({ stat }) => {
+const SportStatCard = ({ stat: data }) => {
+  const stat = { ...sportMeta[data.id], period: "Today", ...data };
   const Icon = sportIconMap[stat.id] || Waves;
 
   return (
@@ -49,12 +51,23 @@ const SportStatCard = ({ stat }) => {
         </div>
       </div>
 
-      {/* Revenue only */}
+      {/* Revenue (swimming pool has amounts) / booked hours (turf games) */}
       <div className="mt-4">
-        <p className="text-xs text-slate-400">Revenue</p>
-        <p className="text-lg font-extrabold text-slate-800">
-          ₹{stat.revenue.toLocaleString("en-IN")}
-        </p>
+        {stat.revenue === null ? (
+          <>
+            <p className="text-xs text-slate-400">Booked Hours</p>
+            <p className="text-lg font-extrabold text-slate-800">
+              {stat.hours} hrs
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="text-xs text-slate-400">Revenue</p>
+            <p className="text-lg font-extrabold text-slate-800">
+              ₹{stat.revenue.toLocaleString("en-IN")}
+            </p>
+          </>
+        )}
       </div>
 
       {/* Completion progress bar */}

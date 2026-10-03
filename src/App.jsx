@@ -8,6 +8,14 @@ import Facilities from "./pages/Facilities/Facilities";
 import Basketball from "./pages/Basketball/Basketball";
 import Pickleball from "./pages/Pickleball/Pickleball";
 import Cricket from "./pages/Cricket/Cricket";
+import Skating from "./pages/Skating/Skating";
+import CalendarBooking from "./pages/CalendarBooking/CalendarBooking";
+import ProductsPricing from "./pages/Pricing/ProductsPricing";
+import Members from "./pages/Members/Members";
+import MemberDetail from "./pages/Members/MemberDetail";
+import Ledger from "./pages/Ledger/Ledger";
+import Reports from "./pages/Reports/Reports";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
   return (
@@ -37,6 +45,14 @@ function App() {
             <Route path="basketball" element={<Basketball />} />
             <Route path="pickleball" element={<Pickleball />} />
             <Route path="cricket" element={<Cricket />} />
+            <Route path="skating" element={<Skating />} />
+            <Route path="calendar" element={<CalendarBooking />} />
+            <Route path="pricing" element={<ProductsPricing />} />
+            <Route path="members" element={<Members />} />
+            <Route path="members/:id" element={<MemberDetail />} />
+            <Route path="ledger" element={<Ledger />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />

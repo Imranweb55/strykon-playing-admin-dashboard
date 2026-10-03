@@ -1,9 +1,35 @@
 import { CalendarCheck2, CheckCircle2, IndianRupee } from "lucide-react";
-import { todaysOverallSummary } from "../../data/dashboardData";
 
 const iconMap = { CalendarCheck2, CheckCircle2, IndianRupee };
 
-const TodaysSummary = () => {
+const TodaysSummary = ({ summary }) => {
+  const todaysOverallSummary = [
+    {
+      id: "total-bookings",
+      label: "Total Bookings",
+      value: summary.totalBookings,
+      icon: "CalendarCheck2",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
+    },
+    {
+      id: "completed",
+      label: "Completed",
+      value: summary.completed,
+      icon: "CheckCircle2",
+      color: "text-emerald-600",
+      bg: "bg-emerald-50",
+    },
+    {
+      id: "total-revenue",
+      label: "Pool Revenue",
+      value: `₹${summary.poolRevenue.toLocaleString("en-IN")}`,
+      icon: "IndianRupee",
+      color: "text-amber-600",
+      bg: "bg-amber-50",
+    },
+  ];
+
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
       <h3 className="text-base font-bold text-slate-800">

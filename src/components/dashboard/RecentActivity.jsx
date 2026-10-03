@@ -1,15 +1,18 @@
-import {
-  UserPlus,
-  CalendarCheck2,
-  Repeat2,
-  IndianRupee,
-  Mail,
-} from "lucide-react";
-import { recentActivity } from "../../data/dashboardData";
+import { UserPlus, XCircle } from "lucide-react";
 
-const iconMap = { UserPlus, CalendarCheck2, Repeat2, IndianRupee, Mail };
+const kindStyle = {
+  created: { Icon: UserPlus, color: "bg-emerald-500" },
+  cancelled: { Icon: XCircle, color: "bg-red-500" },
+};
 
-const RecentActivity = () => {
+const formatAt = (value) =>
+  new Date(value).toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+const RecentActivity = ({ activity: activities }) => {
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
       <div className="flex items-center justify-between">
@@ -20,8 +23,11 @@ const RecentActivity = () => {
       </div>
 
       <div className="mt-4 flex flex-col gap-4">
-        {recentActivity.map((activity) => {
-          const Icon = iconMap[activity.icon];
+        {activities.length === 0 && (
+          <p className="text-sm text-slate-400">No activity yet today.</p>
+        )}
+        {activities.map((activity) => {
+          const { Icon, color } = kindStyle[activity.kind];
           return (
             <div
               key={activity.id}
@@ -29,7 +35,7 @@ const RecentActivity = () => {
             >
               <div className="flex items-start gap-3">
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white ${activity.color}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white ${color}`}
                 >
                   <Icon size={15} />
                 </span>
@@ -41,7 +47,7 @@ const RecentActivity = () => {
                 </div>
               </div>
               <span className="shrink-0 text-xs text-slate-400">
-                {activity.time}
+                {formatAt(activity.at)}
               </span>
             </div>
           );

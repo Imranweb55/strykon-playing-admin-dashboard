@@ -1,21 +1,32 @@
 import { CheckCircle2, Waves, Dribbble, CircleDot, Zap } from "lucide-react";
-import { todaysBookings } from "../../data/dashboardData";
+import { sportMeta } from "../../data/dashboardData";
 
 const sportIconMap = {
-  Swimming: Waves,
-  Basketball: Dribbble,
-  Pickleball: CircleDot,
-  Cricket: Zap,
+  swimming: Waves,
+  basketball: Dribbble,
+  pickleball: CircleDot,
+  cricket: Zap,
 };
 
-const TodaysBookingsTable = () => {
+const statusStyle = {
+  completed: "bg-emerald-50 text-emerald-600",
+  live: "bg-blue-50 text-blue-600",
+  upcoming: "bg-amber-50 text-amber-600",
+};
+const statusLabel = {
+  completed: "Completed",
+  live: "Live",
+  upcoming: "Upcoming",
+};
+
+const TodaysBookingsTable = ({ bookings, loading }) => {
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CheckCircle2 size={18} className="text-blue-600" />
           <h3 className="text-base font-bold text-slate-800">
-            Today's Bookings (Completed)
+            Today's Bookings
           </h3>
         </div>
         <button className="text-xs font-semibold text-amber-500">
@@ -37,8 +48,19 @@ const TodaysBookingsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {todaysBookings.map((booking, index) => {
-              const Icon = sportIconMap[booking.game] || Waves;
+            {!loading && bookings.length === 0 && (
+              <tr>
+                <td
+                  colSpan={7}
+                  className="py-8 text-center text-sm text-slate-400"
+                >
+                  No bookings today yet.
+                </td>
+              </tr>
+            )}
+            {bookings.map((booking, index) => {
+              const meta = sportMeta[booking.sport];
+              const Icon = sportIconMap[booking.sport] || Waves;
               return (
                 <tr key={booking.id} className="border-t border-slate-50">
                   <td className="py-3 pr-4 text-slate-500">{index + 1}</td>
@@ -47,26 +69,30 @@ const TodaysBookingsTable = () => {
                       <span
                         className="flex h-6 w-6 items-center justify-center rounded-md"
                         style={{
-                          backgroundColor: `${booking.color}1A`,
-                          color: booking.color,
+                          backgroundColor: `${meta.color}1A`,
+                          color: meta.color,
                         }}
                       >
                         <Icon size={13} />
                       </span>
-                      {booking.game}
+                      {meta.name}
                     </span>
                   </td>
-                  <td className="py-3 pr-4 text-slate-700">{booking.member}</td>
+                  <td className="py-3 pr-4 text-slate-700">{booking.name}</td>
                   <td className="py-3 pr-4 text-slate-500">{booking.time}</td>
                   <td className="py-3 pr-4 text-slate-500">
-                    {booking.duration}
+                    {booking.hours} {booking.hours === 1 ? "hr" : "hrs"}
                   </td>
                   <td className="py-3 pr-4 font-semibold text-slate-700">
-                    ₹{booking.amount.toLocaleString("en-IN")}
+                    {booking.amount === null
+                      ? "-"
+                      : `₹${booking.amount.toLocaleString("en-IN")}`}
                   </td>
                   <td className="py-3 pr-4">
-                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
-                      {booking.status}
+                    <span
+                      className={`rounded-full px-3 py-1 text-xs font-semibold ${statusStyle[booking.status]}`}
+                    >
+                      {statusLabel[booking.status]}
                     </span>
                   </td>
                 </tr>

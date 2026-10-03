@@ -47,8 +47,12 @@ export const AuthProvider = ({ children }) => {
     setAdmin(null);
   };
 
+  // Called after a successful profile save so the topbar/sidebar reflect the
+  // new name/email immediately, without a full page reload.
+  const updateAdmin = (patch) => setAdmin((prev) => ({ ...prev, ...patch }));
+
   return (
-    <AuthContext.Provider value={{ admin, loading, login, logout }}>
+    <AuthContext.Provider value={{ admin, loading, login, logout, updateAdmin }}>
       {children}
     </AuthContext.Provider>
   );

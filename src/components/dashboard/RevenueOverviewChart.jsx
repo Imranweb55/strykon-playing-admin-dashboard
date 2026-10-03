@@ -7,29 +7,39 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { revenueOverview } from "../../data/dashboardData";
+import { sportMeta, sportOrder } from "../../data/dashboardData";
 
-// Reshape { days, series } into the array-of-objects format recharts expects
-const chartData = revenueOverview.days.map((day, index) => {
-  const point = { day };
-  revenueOverview.series.forEach((s) => {
-    point[s.key] = s.values[index];
+const dayLabel = (key) => {
+  const [y, m, d] = key.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
   });
-  return point;
-});
+};
 
-const RevenueOverviewChart = () => {
+// Turf games do not store an amount, so the chart compares bookings per game.
+const RevenueOverviewChart = ({ trend }) => {
+  const series = sportOrder.map((key) => ({ key, ...sportMeta[key] }));
+  // Reshape { days, series } into the array-of-objects format recharts expects
+  const chartData = trend.days.map((day, index) => {
+    const point = { day: dayLabel(day) };
+    series.forEach((s) => {
+      point[s.key] = trend.series[s.key]?.[index] ?? 0;
+    });
+    return point;
+  });
+
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="text-base font-bold text-slate-800">
-            Revenue Overview
+            Bookings Overview
           </h3>
           <p className="text-xs text-slate-400">Last 7 days</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          {revenueOverview.series.map((s) => (
+          {series.map((s) => (
             <span
               key={s.key}
               className="flex items-center gap-1.5 text-xs font-medium text-slate-500"
@@ -62,15 +72,15 @@ const RevenueOverviewChart = () => {
               tickLine={false}
             />
             <YAxis
-              tickFormatter={(v) => `${v / 1000}K`}
+              allowDecimals={false}
               tick={{ fontSize: 12, fill: "#94A3B8" }}
               axisLine={false}
               tickLine={false}
             />
             <Tooltip
-              formatter={(value) => `₹${value.toLocaleString("en-IN")}`}
+              formatter={(value) => `${value} bookings`}
             />
-            {revenueOverview.series.map((s) => (
+            {series.map((s) => (
               <Line
                 key={s.key}
                 type="monotone"
